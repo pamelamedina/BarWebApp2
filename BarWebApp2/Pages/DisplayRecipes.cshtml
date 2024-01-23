@@ -1,0 +1,51 @@
+﻿
+@page "/DisplayRecipes/{Id}"
+@model BarWebApp2.Pages.DisplayRecipesModel
+@{
+	ViewData["Title"] = "Display Recipe";
+}
+
+
+<div class="mb-3">
+<h1>@Model._Recipe.Title</h1>
+<h5  class="mt-2 ">@Model._Recipe.Description</h5>
+</div>
+
+
+
+<div class="mt-2  mb-2">
+   <div>
+      <h4 class="mt-3">Ingredients:</h4>
+   </div>
+   <ul>
+      @foreach(var i in @Model._Ingredients)
+      {	
+        	<li>
+        		  @(i.Quantity.ToString().TrimStart('0'))
+        	      @i.Unit
+        	      @i.IngredientName 	    
+         	</li>	
+      }
+   </ul>
+ </div>
+
+
+
+<div>
+   <h4 class="mt-3">Preparation: </h4>
+   <ol>
+	   @foreach (var i in @Model._Instructions)
+       {
+	    	<li>@i.Description</li>
+	   }
+   </ol>
+</div>
+
+
+<div class="row mb-2">
+<a asp-page="/DeleteRecipe" asp-route-Id="@Model._Recipe.RecipeId"  > Delete Recipe </a>
+</div>
+
+<div class="row">
+<a asp-page="/Recipe">Back To Recipes</a>
+</div>

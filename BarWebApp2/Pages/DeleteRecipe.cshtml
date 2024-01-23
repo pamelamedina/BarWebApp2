@@ -1,0 +1,57 @@
+﻿@page "/DeleteRecipe/{Id}"
+@model BarWebApp2.Pages.Shared.DeleteRecipeModel
+
+<form method="post">   
+
+    <div class="row" >
+        <div class="col-3">
+            <h4>Please confirm delete:  </h4>
+       </div>
+   
+        <div class="col-1">
+            <input type="submit" value="Confirm" asp-page-handler="Delete" class=" btn btn-sm btn-danger "/>
+        </div>
+
+        <div class="col-1">
+            <input type="submit" value="Cancel" asp-page-handler="Cancel" class="btn btn-sm  btn-primary"/>
+        </div>
+    </div>
+
+</form>
+
+
+<!--display stuff-->
+
+<div class="mb-3">
+    <h1>@Model._Recipe.Title</h1>
+    <h5 class="mt-2 ">@Model._Recipe.Description</h5>
+</div>
+<div class="mt-2  mb-2">
+    <div>
+        <h4 class="mt-3">Ingredients:</h4>
+    </div>
+    <ul>
+        @foreach (var i in @Model._Ingredients)
+        {
+            <li>
+                @(i.Quantity.ToString().TrimStart('0'))
+                @i.Unit
+                @i.IngredientName
+            </li>
+        }
+    </ul>
+</div>
+
+<!--display stuff-->
+
+
+<div>
+    <h4 class="mt-3">Preparation: </h4>
+    <ol>
+        @foreach (var i in @Model._Instructions)
+        {
+            <li>@i.Description</li>
+        }
+    </ol>
+</div>
+
